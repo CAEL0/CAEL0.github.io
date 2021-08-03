@@ -6,7 +6,7 @@ main:
     url: /Algorithm/
   - title: "BOJ"
     url: https://CAEL0.github.io/BOJ
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
+  - title: "About"
+    url: /about/
   # - title: "Sitemap"
   #   url: /sitemap/
