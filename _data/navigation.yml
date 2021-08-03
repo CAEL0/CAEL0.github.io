@@ -3,9 +3,11 @@ main:
   - title: "GitHub"
     url: https://github.com/CAEL0
   - title: "Algorithm"
-    url: /Algorithm/
-  - title: "ProblemSolving"
-    url: https://CAEL0.github.io/PS
+    url: /algorithm/
+  - title: "ProblemSolving1"
+    url: https://CAEL0.github.io/problemsolving/
+  - title: "Problem Solving2"
+    url: /problemsolving/
   - title: "About"
     url: /about/
   # - title: "Sitemap"
