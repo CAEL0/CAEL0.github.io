@@ -1,9 +1,9 @@
 ---
-title: 따옴표없으면?
-permalink: /categories/상관없는거/
+title: 알고리즘
+permalink: /categories/algorithm/
 layout: category
 author_profile: true
 taxonomy: Algorithm
 ---
 
-안뇽앙뇽
+다양한 알고리즘들을 배워보아요!
