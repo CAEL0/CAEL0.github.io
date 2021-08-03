@@ -4,8 +4,8 @@ main:
     url: https://github.com/CAEL0
   - title: "Algorithm"
     url: /Algorithm/
-  - title: "BOJ"
-    url: https://CAEL0.github.io/BOJ
+  - title: "ProblemSolving"
+    url: https://CAEL0.github.io/PS
   - title: "About"
     url: /about/
   # - title: "Sitemap"
