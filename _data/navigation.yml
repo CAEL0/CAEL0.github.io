@@ -3,9 +3,9 @@ main:
   - title: "GitHub"
     url: https://github.com/CAEL0
   - title: "Algorithm"
-    url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
+    url: /Algorithm/
+  - title: "BOJ"
+    url: https://CAEL0.github.io/BOJ
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
