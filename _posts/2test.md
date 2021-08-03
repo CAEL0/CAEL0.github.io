@@ -1,12 +1,8 @@
 ---
-title: "hi"
-excerpt: "Second Test"
-
-categories: what
-
-tags: "how"
-
-last_modified_at: 2021-08-02
+title: test2
+excerpt: excerpt2
+categories: Algorithm
+tags: "algorithm2"
 ---
 
 ```python
@@ -21,4 +17,4 @@ while True:
 
 ```
 
-not good
+good
