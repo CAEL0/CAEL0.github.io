@@ -1,5 +1,5 @@
 ---
-title: "축구"
+title: "축구하자"
 permalink: /categories/축구/
 layout: category
 author_profile: false
