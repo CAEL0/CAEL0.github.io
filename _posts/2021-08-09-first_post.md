@@ -1,7 +1,7 @@
 ---
-title: solved.ac
+title: 첫 포스팅
 categories: BOJ
-tags: solved.ac
+tags: solved.ac ICPC Sinchon
 last_modified_at: 2021-08-09-21-33
 ---
 
@@ -29,7 +29,7 @@ ICPC Sinchon 과제 열심히 하다 보면 달성하겠지...
 
 그러다 문득 의문이 들었다.
 
-<br><center>*대충 한 티어에 레이팅 1씩 차이나는 것 같은데, 플레5는 레이팅 몇일까?*</center>
+*대충 한 티어에 레이팅 1씩 차이나는 것 같은데, 플레5는 레이팅 몇일까?*
 ---
 
 <br>
@@ -43,8 +43,6 @@ ICPC Sinchon 과제 열심히 하다 보면 달성하겠지...
 
 
 결론적으로 플레5가 16, 플레4가 17, ..., 다이아3이 23에 해당한단 걸 알 수 있었다.
-
-기여로 25 레이팅을 얻을 지 말지 너무나도 고민된다.
 
 <br><br><br>
 
