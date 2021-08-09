@@ -8,5 +8,7 @@ main:
     url: /categories/machinelearning/
   - title: "Problem Solving"
     url: /categories/problemsolving/
+  - title: "Python"
+    url: /categories/python/
   - title: "GitHub"
     url: https://github.com/CAEL0
