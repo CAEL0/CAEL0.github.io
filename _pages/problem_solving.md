@@ -6,4 +6,4 @@ author_profile: true
 taxonomy: Problem Solving
 ---
 
-알고리즘 문제들을 풀어보아요~
+[solved.ac 프로필](https://solved.ac/profile/luciaholic)
