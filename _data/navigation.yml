@@ -2,6 +2,10 @@
 main:
   - title: "Algorithm"
     url: /categories/algorithm/
+  - title: "Deep Learning"
+    url: /categories/deeplearning/
+  - title: "Machine Learning"
+    url: /categories/machinelearning/
   - title: "Problem Solving"
     url: /categories/problemsolving/
   - title: "GitHub"
