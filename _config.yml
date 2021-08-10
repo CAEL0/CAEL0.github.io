@@ -293,12 +293,3 @@ defaults:
       toc_label: 목차
       toc_icon: bars
       breadcrumbs: true
-
-tipue_search:
-    include:
-        pages: false
-        collections: []
-    exclude:
-        files: [search.html, index.html, tags.html]
-        categories: []
-        tags: []
