@@ -5,5 +5,3 @@ layout: category
 author_profile: true
 taxonomy: Python
 ---
-
-파이썬
