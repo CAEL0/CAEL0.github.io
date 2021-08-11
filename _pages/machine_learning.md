@@ -1,7 +1,7 @@
 ---
-title: MachineLearning
+title: "Machine Learning"
 permalink: /categories/machinelearning/
 layout: category
 author_profile: true
-taxonomy: MachineLearning
+taxonomy: "Machine Learning"
 ---
