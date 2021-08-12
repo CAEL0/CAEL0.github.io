@@ -271,7 +271,7 @@ for i in range(hidden_layer_size):
 
 <br>
 
-![활성화 값 분포](/assets/images/2021_08_12/6_2_2_1.PNG)
+![표준편차 1](/assets/images/2021_08_12/6_2_2_1.PNG)
 
 <br>
 
@@ -293,13 +293,88 @@ for i in range(hidden_layer_size):
 
 <br>
 
-![활성화 값 분포](/assets/images/2021_08_12/6_2_2_2.PNG)
+![표준편차 0.01](/assets/images/2021_08_12/6_2_2_2.PNG)
 
 <br>
 
 이번에는 0.5 부근에 집중됨
 
 기울기 소실 문제는 일어나지 않았지만 다수의 뉴런이 같은 값을 출력하고 있으니 **표현력을 제한**한다는 관점에서 문제가 됨
+
+**Xavier 초깃값** : Xavier Glorot, Yoshua Bengio의 논문에서 권장하는 가중치 초깃값
+
+앞 계층의 노드가 $ n $개라면 표준편차가 $ \frac{1}{\sqrt n} $인 분포를 사용
+
+```python
+    ...
+    w = np.random.randn(node_num, node_num) / np.sqrt(node_num)
+    ...
+```
+
+<br>
+
+![Xavier 초깃값](/assets/images/2021_08_12/6_2_2_3.PNG)
+
+<br>
+
+앞의 두 방식보다 확실히 넓게 분포됨
+
+그런데 층이 깊어질수록 오른쪽으로 쏠리는 경향을 보임
+
+이는 sigmoid 함수가 (0, 0.5)에서 점대칭이기 때문
+
+이를 보완하려면 원점 대칭인 tanh 함수를 활성화함수로 사용하면 됨
+
+<br>
+
+>> ## 6.2.3 ReLU를 사용할 때의 가중치 초깃값
+---
+
+**He 초깃값** : Kaiming He의 이름을 딴, ReLU에 특화된 초깃값
+
+앞 계층의 노드가 $ n $개라면 표준편차가 $ \sqrt {\frac{2}{n}} $인 분포를 사용
+
+ReLU의 치역이 음이 아닌 실수이므로 더 넓게 분포시키기 위해 Xavier 초깃값에 비해 $ \sqrt 2 $배 늘어났다고 해석하면 됨
+
+<br>
+
+![ReLU](/assets/images/2021_08_12/6_2_3.PNG)
+
+<br>
+
+위 두 방식은 기울기 소실 문제를 일으키지만 He 초깃값은 균일하게 분포함
+
+<br>
+
+## *결론*
+
+|활성화 함수|초깃값|
+|:--------:|:----:|
+|sigmoid   |Xavier|
+|tanh      |Xavier|
+|ReLU      |He|
+
+<br>
+
+>> ## 6.2.4 MNIST 데이터셋으로 본 가중치 초깃값 비교
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
