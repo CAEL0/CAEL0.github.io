@@ -79,13 +79,13 @@ $$ f(x, y) = \frac{1}{20}x^2 + y^2 $$
 
 y축 방향으로 훨씬 가파른 모양의 함수
 
-<br>
+</center><br><center><br>
 
 ![기울기](/assets/images/2021_08_12/6_1_3_2.PNG)
 
 (0, 0)보다는 y = 0을 향해 있음
 
-<br>
+</center><br><center><br>
 
 ![SGD 경로](/assets/images/2021_08_12/6_1_3_3.PNG)
 
