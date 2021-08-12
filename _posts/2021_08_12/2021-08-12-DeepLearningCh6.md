@@ -6,7 +6,7 @@ tags: []
 last_modified_at: 2021-08-12 12:18:00 +0900
 ---
 
-> *이 포스트는 책 [밑바닥부터 시작하는 딥러닝](https://books.google.co.kr/books/about/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0_%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94_%EB%94%A5%EB%9F%AC%EB%8B%9D.html?id=SM9KDwAAQBAJ&source=kp_book_description&redir_esc=y)을 정리한 내용입니다.*
+> *이 포스트는 책 [<u>밑바닥부터 시작하는 딥러닝</u>](https://books.google.co.kr/books/about/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0_%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94_%EB%94%A5%EB%9F%AC%EB%8B%9D.html?id=SM9KDwAAQBAJ&source=kp_book_description&redir_esc=y)을 정리한 내용입니다.*
 ---
 
 <br>
@@ -134,7 +134,7 @@ class Momentum:
 
 <br><center>
 
-![모멘텀 경로](/assets/images/2021_08_12/6_1_3_4.PNG)
+![모멘텀 경로](/assets/images/2021_08_12/6_1_4.PNG)
 
 SGD보다 효율적인 경로로 최적화가 진행됨
 
@@ -184,7 +184,7 @@ class AdaGrad:
 
 <br><center>
 
-![AdaGrad 경로](/assets/images/2021_08_12/6_1_3_5.PNG)
+![AdaGrad 경로](/assets/images/2021_08_12/6_1_5.PNG)
 
 모멘텀보다도 효율적인 경로로 최적화가 진행됨
 
@@ -197,7 +197,7 @@ class AdaGrad:
 
 <br><center>
 
-![Adam 경로](/assets/images/2021_08_12/6_1_3_6.PNG)
+![Adam 경로](/assets/images/2021_08_12/6_1_6.PNG)
 
 모멘텀과 AdaGrad의 중간처럼 보임
 
@@ -217,7 +217,7 @@ class AdaGrad:
 
 <br><center>
 
-![Adam 경로](/assets/images/2021_08_12/6_1_3_7.PNG)
+![Adam 경로](/assets/images/2021_08_12/6_1_8.PNG)
 
 100개의 뉴런으로 구성된 5층 신경망에서 활성화 함수로는 ReLU 사용
 
@@ -228,10 +228,70 @@ class AdaGrad:
 > # 6.2 가중치의 초깃값
 ---
 
-hi
+>> ## 6.2.1 초깃값을 0으로 하면?
+---
+
+**가중치 감소 (weight decay) 기법** : 가중치 매개변수의 값이 작아지도록 학습하여 오버피팅을 억제하는 방법
+
+가중치의 초깃값을 모두 0으로 설정하면 (정확히는 가중치를 모두 같은 값으로 설정하면) 학습이 이뤄지지 않음
+
+왜냐하면 손실 함수의 값을 편미분한 값이 모두 동일하기 때문에 갱신량도 동일해서 가중치들끼리 다른 값을 가질 수 없음
+
+그러므로 초깃값은 무작위로 설정해야함
+
+<br>
+
+>> ## 6.2.2 은닉층의 활성화값 분포
+---
+
+가중치의 초깃값에 따른 은닉층 활성화값들의 변화는 어떨까?
+
+활성화 함수로 시그모이드 함수를 사용하는 5층 신경망에 무작위 데이터를 흘리며 각 층의 활성화값 분포의 히스토그램 관찰 실험
+
+```python
+import numpy as np
 
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
+
+x = np.random.randn(1000, 100)
+node_num = 100
+hidden_layer_size = 5
+activations = {}
+
+for i in range(hidden_layer_size):
+    if i:
+        x = activations[i - 1]
+    
+    w = np.random.randn(node_num, node_num) * 1
+    a = np.dot(x, w)
+    z = sigmoid(a)
+    activations[i] = z
+```
+
+<br><center>
+
+![활성화 값 분포](/assets/images/2021_08_12/6_2_2.PNG)
+
+</center><br>
+
+각 층의 활성화값들이 0과 1에 치우쳐 분포됨
+
+출력이 0 또는 1에 가까워질수록 미분값은 0에 가까워져 역전파의 기울기 값이 점점 작아지다가 사라짐
+
+이런 문제를 **기울기 소실** (gradient vanishing)이라고 함
+
+<br>
+
+가중치의 표준편차를 0.01로 바꿔 같은 실험을 반복
+
+```python
+    ...
+    w = np.random.randn(node_num, node_num) * 0.01
+    ...
+```
 
 
 
