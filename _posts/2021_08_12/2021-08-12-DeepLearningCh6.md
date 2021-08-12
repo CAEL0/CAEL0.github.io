@@ -6,8 +6,8 @@ tags: []
 last_modified_at: 2021-08-12 12:18:00 +0900
 ---
 
-> 이 포스트는 책 [<u>밑바닥부터 시작하는 딥러닝</u>](https://books.google.co.kr/books/about/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0_%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94_%EB%94%A5%EB%9F%AC%EB%8B%9D.html?id=SM9KDwAAQBAJ&source=kp_book_description&redir_esc=y)을 정리한 내용입니다.
----
+> *이 포스트는 책 [<u>밑바닥부터 시작하는 딥러닝</u>](https://books.google.co.kr/books/about/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0_%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94_%EB%94%A5%EB%9F%AC%EB%8B%9D.html?id=SM9KDwAAQBAJ&source=kp_book_description&redir_esc=y)을 정리한 내용입니다.*
+
 
 <br>
 
@@ -64,7 +64,7 @@ for i in range(10000):
     ...
 ```
 
-get_mini_batch()로 random한 데이터로 최적화하기 때문에 **'확률적'** 경사 하강법임.
+get_mini_batch()로 불러온 random한 데이터로 최적화하기 때문에 **'확률적'** 경사 하강법임
 
 <br>
 
@@ -73,25 +73,25 @@ get_mini_batch()로 random한 데이터로 최적화하기 때문에 **'확률�
 
 $$ f(x, y) = \frac{1}{20}x^2 + y^2 $$
 
-<center><br>
+<br>
 
 ![그래프와 등고선](/assets/images/2021_08_12/6_1_3_1.PNG)
 
 y축 방향으로 훨씬 가파른 모양의 함수
 
-</center><br><center><br>
+<br>
 
 ![기울기](/assets/images/2021_08_12/6_1_3_2.PNG)
 
 (0, 0)보다는 y = 0을 향해 있음
 
-</center><br><center><br>
+<br>
 
 ![SGD 경로](/assets/images/2021_08_12/6_1_3_3.PNG)
 
 매우 비효율적인 경로로 최적화가 진행됨
 
-</center><br>
+<br>
 
 SGD는 비등방성 (anisotropy, 방향에 따라 성질 (기울기)이 달라지는) 함수에 대해서는 비효율적임
 
@@ -132,13 +132,13 @@ class Momentum:
             params[key] += self.v[key]
 ```
 
-<br><center>
+<br>
 
 ![모멘텀 경로](/assets/images/2021_08_12/6_1_4.PNG)
 
 SGD보다 효율적인 경로로 최적화가 진행됨
 
-</center><br>
+<br>
 
 >> ## 6.1.5 AdaGrad
 ---
@@ -182,26 +182,26 @@ class AdaGrad:
             params[key] -= self.lr * grads[key] / (np.sqrt(self.h[key]) + 1e-7)
 ```
 
-<br><center>
+<br>
 
 ![AdaGrad 경로](/assets/images/2021_08_12/6_1_5.PNG)
 
 모멘텀보다도 효율적인 경로로 최적화가 진행됨
 
-</center><br>
+<br>
 
 >> ## 6.1.6 Adam
 ---
 
 **Adam** : 2015년에 제안된, 모멘텀과 AdaGrad를 융합한 기법
 
-<br><center>
+<br>
 
 ![Adam 경로](/assets/images/2021_08_12/6_1_6.PNG)
 
 모멘텀과 AdaGrad의 중간처럼 보임
 
-</center><br>
+<br>
 
 >> ## 6.1.7 어느 갱신 방법을 이용할 것인가?
 ---
@@ -215,13 +215,11 @@ class AdaGrad:
 >> ## 6.1.8 MNIST 데이터셋으로 본 갱신 방법 비교
 ---
 
-<br><center>
+<br>
 
 ![Adam 경로](/assets/images/2021_08_12/6_1_8.PNG)
 
 100개의 뉴런으로 구성된 5층 신경망에서 활성화 함수로는 ReLU 사용
-
-</center><br>
 
 <br>
 
@@ -271,11 +269,11 @@ for i in range(hidden_layer_size):
     activations[i] = z
 ```
 
-<br><center>
+<br>
 
 ![활성화 값 분포](/assets/images/2021_08_12/6_2_2_1.PNG)
 
-</center><br>
+<br>
 
 각 층의 활성화값들이 0과 1에 치우쳐 분포됨
 
@@ -293,11 +291,11 @@ for i in range(hidden_layer_size):
     ...
 ```
 
-<br><center>
+<br>
 
 ![활성화 값 분포](/assets/images/2021_08_12/6_2_2_2.PNG)
 
-</center><br>
+<br>
 
 이번에는 0.5 부근에 집중됨
 
