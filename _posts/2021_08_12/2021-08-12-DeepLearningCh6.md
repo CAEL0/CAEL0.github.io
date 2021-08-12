@@ -361,7 +361,7 @@ ReLU의 치역이 음이 아닌 실수이므로 더 넓게 분포시키기 위�
 
 <br>
 
-![ReLU](/assets/images/2021_08_12/6_2_4.PNG)
+![비교](/assets/images/2021_08_12/6_2_4.PNG)
 
 <br>
 
@@ -369,17 +369,163 @@ ReLU의 치역이 음이 아닌 실수이므로 더 넓게 분포시키기 위�
 
 std = 0.01인 경우 학습이 전혀 되지 않음
 
+나머지 둘은 학습이 잘 되며, He가 조금 더 빠름
+
+<br>
+
+> # 6.3 배치 정규화
+---
+
+각 층이 활성화를 적당히 퍼뜨리도록 강제할 수 있을까?
+
+<br>
+
+>> ## 6.3.1 배치 정규화 알고리즘
+---
+
+**배치 정규화** (Batch Normalization)의 장점
+
+* 학습을 빨리 진행할 수 있음 (학습 속도 개선)
+
+* 초깃값에 크게 의존하지 않음
+
+* 오버피팅 억제 (드롭아웃 등의 필요성 감소)
+
+<br>
+
+![배치 정규화 계층](/assets/images/2021_08_12/6_3_1_1.PNG)
+
+<br>
 
 
+배치 정규화 계층을 신경망에 삽입
 
+학습 시 미니배치 단위로 평균이 0, 분산이 1이 되도록 정규화
 
+$$ B = \{ x_1, x_2, ..., x_m \} $$
 
+$$ \mu_B \leftarrow \frac{1}{m} \sum_{i = 1}^m x_i $$
 
+$$ \sigma_B^2 \leftarrow \frac{1}{m} \sum_{i = 1}^m (x_i - \mu_B)^2 $$
 
+$$ \hat x_i \leftarrow \frac{x_i - \mu_B}{\sqrt {\sigma_B^2 + \epsilon}} $$
 
+이 처리를 활성화 함수의 앞 혹은 뒤에 삽입함으로써 데이터 분포가 덜 치우치게 할 수 있음
 
+또한 배치 정규화 계층마다 이 정규화된 데이터에 고유한 확대와 이동 변환 수행
 
+$$ y_i \leftarrow \gamma \hat x_i + \beta $$
 
+$ \gamma $ : 확대
+
+$ \beta $ : 이동
+
+처음에는 $ \gamma = 1, \beta = 0 $부터 시작하고 학습하면서 적합한 값으로 조정
+
+<br>
+
+![계산 그래프](/assets/images/2021_08_12/6_3_1_2.PNG)
+
+<br>
+
+>> ## 6.3.2 배치 정규화의 효과
+---
+
+<br>
+
+![효과](/assets/images/2021_08_12/6_3_2_1.PNG)
+
+<br>
+
+배치 정규화가 학습을 빨리 진전시킴
+
+<br>
+
+![비교](/assets/images/2021_08_12/6_3_2_2.PNG)
+
+<br>
+
+배치 정규화를 사용한 경우 초깃값에 상관 없이 대체로 학습 진도가 빠름
+
+배치 정규화를 사용하지 않은 경우에는 초깃값에 따라 학습이 진행되지 않기도 함
+
+<br>
+
+> # 6.4 비른 학습을 위해
+---
+
+>> ## 6.4.1 오버피팅
+---
+
+오버피팅은 주로 다음의 두 경우에 일어남
+
+* 매개변수가 많고 표현력이 높은 모델
+
+* 훈련 데이터가 적음
+
+두 요건을 충족시켜 일부러 오버피팅을 일으켜봄
+
+60000개인 MNIST 데이터셋의 훈련 데이터 중 300개만 사용
+
+각 층의 뉴런은 100개, 활성화 함수는 ReLU, 총 7층 네트워크 사용
+
+<br>
+
+```python
+(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+
+x_train = x_train[:300]
+t_train = t_train[:300]
+
+weight_decay_lambda = 0.1
+
+network = MultiLayerNet(input_size=784, hidden_size_list=[100, 100, 100, 100, 100, 100], output_size=10)
+optimizer = SGD(lr=0.01)
+
+max_epochs = 201
+train_size = x_train.shape[0]
+batch_size = 100
+
+train_loss_list = []
+train_acc_list = []
+test_acc_list = []
+
+iter_per_epoch = max(train_size / batch_size, 1)
+epoch_cnt = 0
+
+for i in range(1000000000):
+    batch_mask = np.random.choice(train_size, batch_size)
+    x_batch = x_train[batch_mask]
+    t_batch = t_train[batch_mask]
+
+    grads = network.gradient(x_batch, t_batch)
+    optimizer.update(network.params, grads)
+
+    if i % iter_per_epoch == 0:
+        train_acc = network.accuracy(x_train, t_train)
+        test_acc = network.accuracy(x_test, t_test)
+        train_acc_list.append(train_acc)
+        test_acc_list.append(test_acc)
+
+        epoch_cnt += 1
+        if epoch_cnt >= max_epochs:
+            break
+```
+
+<br>
+
+![정확도](/assets/images/2021_08_12/6_4_1.PNG)
+
+<br>
+
+훈련 데이터의 정확도는 1에 가까워지나 시험 데이터는 저조함
+
+<br>
+
+>> ## 6.4.2 가중치 감소
+---
+
+**가중치 감소** (weight decay) : 오버피팅 억제 방법 중 하나로 학습 과정에서 큰 가중치에 대해서는 그에 상응하는 큰 페널티를 부과
 
 
 
