@@ -273,7 +273,7 @@ for i in range(hidden_layer_size):
 
 <br><center>
 
-![활성화 값 분포](/assets/images/2021_08_12/6_2_2.PNG)
+![활성화 값 분포](/assets/images/2021_08_12/6_2_2_1.PNG)
 
 </center><br>
 
@@ -293,7 +293,15 @@ for i in range(hidden_layer_size):
     ...
 ```
 
+<br><center>
 
+![활성화 값 분포](/assets/images/2021_08_12/6_2_2_2.PNG)
+
+</center><br>
+
+이번에는 0.5 부근에 집중됨
+
+기울기 소실 문제는 일어나지 않았지만 다수의 뉴런이 같은 값을 출력하고 있으니 **표현력을 제한**한다는 관점에서 문제가 됨
 
 
 
