@@ -24,8 +24,8 @@ description              : "CAELO's Study Log"
 url                      : "https://cael0.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "" # path of fallback teaser image
-logo                     : "" # path of logo image to display in the masthead
+teaser                   : "/assets/images/밤이2.jpg" # path of fallback teaser image
+logo                     : "/assets/images/밤이2.jpg" # path of logo image to display in the masthead
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -102,7 +102,7 @@ analytics:
 # Site Author
 author:
   name             : "CAELO"
-  avatar           : "/assets/images/밤이.jpg" # path of avatar image
+  avatar           : "/assets/images/밤이1.jpg" # path of avatar image
   bio              : "**Mathematics** | **Computer Science**"
   location         : "Seoul, South Korea"
   email            :
@@ -137,7 +137,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/CAEL0"
+      url: "https://github.com/CAEL0"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
