@@ -436,3 +436,95 @@ class Convolution:
 >> ## 7.4.4 풀링 계층 구현하기
 ---
 
+<br>
+
+![풀링 전개](/assets/images/2021_08_16/7_4_4_1.PNG)
+
+<br>
+
+풀링 계층 구현도 합성곱 계층처럼 im2col을 이용해 입력 데이터를 전개하지만 풀링 적용 영역을 채널마다 독립적으로 전개함
+
+<br>
+
+![풀링 forward](/assets/images/2021_08_16/7_4_4_2.PNG)
+
+<br>
+
+풀링을 적용한 후 형상을 변환함
+
+```python
+class Pooling:
+    def __init__(self, pool_h, pool_w, stride=1, pad=0):
+        self.pool_h = pool_h
+        self.pool_w = pool_w
+        self.stride = stride
+        self.pad = pad
+    
+    def forward(self, x):
+        N, C, H, W = x.shape
+        out_h = int(1 + (H - self.pool_h) / self.stride)
+        out_w = int(1 + (W - self.pool_w) / self.stride)
+
+        # col.shape = (N * out_h * out_w, C * pool_h * pool_w)
+        col = im2col(x, self.pool_h, self.pool_w, self.stride, self.pad)
+
+        # col.shape = (N * out_h * out_w * C, pool_h * pool_w)
+        col = col.reshape(-1, self.pool_h * self.pool_w)
+
+        # out.shape = (N * out_h * out_w * C, 1)
+        out = np.max(col, axis=1)
+
+        # out.shape = (N, C, out_h, out_w)
+        out = out.reshape(N, out_h, out_w, C).transpose(0, 3, 1, 2)
+        return out
+```
+
+im2col 함수를 통해 4차원 입력 데이터 x를 2차원으로 만들어 준 뒤, 각 행 별로 풀링을 적용시키기 위해 형상을 바꿔줌
+
+합성곱의 forward와 마찬가지로 out의 축의 순서를 x와 동일하게 바꿔줌
+
+<br>
+
+> # 7.5 CNN 구현하기
+---
+
+<br>
+
+![CNN 구현](/assets/images/2021_08_16/7_5.PNG)
+
+<br>
+
+손글씨 숫자 인식 CNN
+
+```python
+class SimpleConvNet:
+    def __init__(self, input_dim=(1, 28, 28),
+                conv_param={'filter_num':30, 'filter_size':5, 'pad':0, 'stride':1},
+                hidden_size=100, output_size=10, weight_init_std=0.01):
+        filter_num = conv_param['filter_num']
+        filter_size = conv_param['filter_size']
+        filter_pad = conv_param['pad']
+        filter_stride = conv_param['strid']
+        input_size = input_dim[1]
+        conv_output_size = (input_size - filter_size + 2 * filter_pad) / filter_stride + 1
+        pool_output_size = int(filter_num * (conv_output_size / 2) * (comv_output_size / 2))
+
+        self.params = {}
+        self.params['W1'] = weight_init_std * np.random.randn(filter_num, input_dim[0],
+                                                             filter_size, filter_size)
+        self.params['b1'] = np.zeros(filter_num)
+        self.params['W2'] = weight_init_std * np.random.randn(pool_output_size, hidden_size)
+        self.params['b2'] = np.zeros(hidden_size)
+        self.params['W#'] = weight_init_std * np.random.randn(hidden_size, output_size)
+        self.params['b3'] = np.zeros(output_size)
+
+        self.layers = OrderedDict()
+        self.layers['Conv1'] = Convolution(self.params['W1'], self.params['b1'],
+                                            conv_param['stride'], conv_param['pad'])
+        self.layers['Relu1'] = Relu()
+        self.layers['Pool1'] = Pooling(pool_h=2, pool_w=2, stride=2)
+        self.layers['Affine1'] = Affine(self.params['W2'], self.params['b2'])
+        self.layers['Relu2'] = Relu()
+        self.layers['Affine2'] = Affine(self.params['W3'], self.params['b3'])
+        self.last_layer = SoftmaxWithLoss()
+```
