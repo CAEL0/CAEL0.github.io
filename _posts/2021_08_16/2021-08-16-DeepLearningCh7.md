@@ -218,3 +218,221 @@ $$ OW = \frac{W + 2P - FW}{S} + 1 $$
 
 <br>
 
+신경망에 4차원 데이터가 하나 흐를 때마다 데이터 N개에 대한 합성곱 연산이 이뤄짐
+
+<br>
+
+> # 7.3 풀링 계층
+---
+
+세로, 가로 방향의 공간을 줄이는 연산
+
+<br>
+
+![풀링 예시](/assets/images/2021_08_16/7_3.PNG)
+
+<br>
+
+2x2 **최대 풀링** (max pooling)을 스트라이드 2로 처리하는 예시
+
+보통 풀링의 윈도우 크기와 스트라이드는 같은 값으로 설정
+
+최대 풀링 외에도 평균 풀링 등이 있지만 주로 최대 풀링을 사용
+
+<br>
+
+>> ## 7.3.1 풀링 계층의 특징
+---
+
+* 명확한 처리이므로 학습해야 할 매개변수가 없음
+
+<br>
+
+![채널 수 변화 없음](/assets/images/2021_08_16/7_3_1_1.PNG)
+
+<br>
+
+* 채널마다 적용하는 연산이므로 채널 수가 변하지 않음
+
+<br>
+
+![강건함](/assets/images/2021_08_16/7_3_1_2.PNG)
+
+<br>
+
+* 입력의 변화에 영향을 적게 받음
+
+<br>
+
+> # 7.4 합성곱/풀링 계층 구현하기
+---
+
+>> ## 7.4.1 4차원 배열
+---
+
+```python
+x = np.random.rand(10, 1, 28, 28)
+x.shape  # (10, 1, 28, 28)
+```
+
+높이 28, 너비 28, 채널 1개인 데이터 10개 무작위 생성
+
+```python
+x[0].shape  # (1, 28, 28)
+x[1].shape  # (1, 28, 28)
+```
+
+x\[i\]로 i번째 데이터에 접근
+
+```python
+x[0, 0].shape  # (28, 28)
+x[0][0].shape  # (28, 28)
+```
+
+x\[i\]\[j\] (혹은 x\[i, j\])로 i번째 데이터의 j번째 채널의 공간 데이터에 접근
+
+<br>
+
+>> ## 7.4.2 im2col로 데이터 전개하기
+---
+
+합성곱 연산을 for문으로 구현하려면 적어도 4중 for문을 써야함
+
+Numpy에 for문을 사용하면 성능 저하가 일어나므로 **im2col** (image to column)이라는 편의 함수를 사용해 구현
+
+<br>
+
+![im2col 예시1](/assets/images/2021_08_16/7_4_2_1.PNG)
+
+<br>
+
+배치 안의 데이터 수까지 포함한 4차원 입력 데이터를 2차원 행렬로 변환
+
+<br>
+
+![im2col 예시2](/assets/images/2021_08_16/7_4_2_2.PNG)
+
+<br>
+
+입력 데이터를 필터링 (가중치 계산)하기 좋게 전개
+
+입력 데이터에서 필터를 적용하는 영역 (3차원 블록)을 한 줄로 늘어놓음
+
+스트라이드가 작아 필터 적용 영역이 겹치게 되면 im2col로 전개한 후의 원소 수가 원래 블록의 원소 수보다 많으므로 메모리를 더 많이 소비함
+
+<br>
+
+![im2col 예시3](/assets/images/2021_08_16/7_4_2_3.PNG)
+
+<br>
+
+합성곱 계층의 필터 (가중치) 또한 1열로 전개 후 행렬곱을 계산 (Affine 계층에서 했던 계산과 거의 유사)
+
+마지막으로 출력 결과인 2차원 행렬을 4차원으로 변형
+
+<br>
+
+>> ## 7.4.3 합성곱 계층 구현하기
+---
+
+```python
+def im2col(input_data, filter_h, filter_w, stride=1, pad=0):
+    """
+    다수의 이미지를 입력받아 2차원 배열로 변환 (평탄화)
+    
+    Parameters
+    ----------
+    input_data : 4차원 배열 형태의 입력 데이터(이미지 수, 채널 수, 높이, 너비)
+    filter_h : 필터의 높이
+    filter_w : 필터의 너비
+    stride : 스트라이드
+    pad : 패딩
+    
+    Returns
+    -------
+    col : 2차원 배열
+    """
+
+    N, C, H, W = input_data.shape
+    out_h = (H + 2 * pad - filter_h) // stride + 1
+    out_w = (W + 2 * pad - filter_w) // stride + 1
+
+    img = np.pad(input_data, [(0,0), (0,0), (pad, pad), (pad, pad)], 'constant')
+    col = np.zeros((N, C, filter_h, filter_w, out_h, out_w))
+
+    for y in range(filter_h):
+        y_max = y + stride * out_h
+        for x in range(filter_w):
+            x_max = x + stride * out_w
+            col[:, :, y, x, :, :] = img[:, :, y:y_max:stride, x:x_max:stride]
+
+    col = col.transpose(0, 4, 5, 1, 2, 3).reshape(N * out_h * out_w, -1)
+    return col
+```
+
+```python
+x1 = np.random.rand(1, 3, 7, 7)  # (데이터 수, 채널 수, 높이, 너비)
+col1 = im2col(x1, 5, 5, stride=1, pad=0)
+print(col1.shape)  # (9, 75)
+```
+
+col1의 높이는 (7 - 5 + 1) * (7 - 5 + 1) = 9, 너비는 3 * 5 * 5 = 75
+
+즉 각 행은 윈도우의 위치에 따른, 필터와 합성곱을 수행하게 되는 입력 데이터의 원소들임
+
+```python
+x2 = np.random.rand(10, 3, 7, 7)  # (데이터 수, 채널 수, 높이, 너비)
+col2 = im2col(x2, 5, 5, stride=1, pad=0)
+print(col2.shape)  # (90, 75)
+```
+
+입력 데이터가 여러개일 땐 행을 추가함
+
+```python
+class Convolution:
+    def __init__(self, W, b, stride=1, pad=0):
+        self.W = W  # 필터 (개수, 채널, 높이, 너비)
+        self.b = b  # 편향 (개수, )
+        self.stride = stride
+        self.pad = pad
+    
+    def forward(self, x):
+        FN, C, FH, FW = self.W.shape
+        N, C, H, W = x.shape
+        out_h = int(1 + (H + 2 * self.pad - FH) / self.stride)
+        out_w = int(1 + (W + 2 * self.pad - FW) / self.stride)
+
+        # col.shape = (N * out_h * out_w, C * FH * FW)
+        col = im2col(x, FH, FW, self.stride, self.pad)
+
+        # col_W.shape = (C * FH * FW, FN)
+        col_W = self.W.reshape(FN, -1).T
+
+        # np.dot(col, col_W).shape = (N * out_h * out_w, FN)
+        # self.b.shape = (FN, )
+        # broadcasting
+        # out.shape = (N * out_h * out_w, FN)
+        out = np.dot(col, col_W) + self.b
+
+        # out.shape = (N, FN, out_h, out_w)
+        out = out.reshape(N, out_h, out_w, -1).transpose(0, 3, 1, 2)
+        return out
+```
+
+4차원 입력 데이터 x를 im2col 함수를 통해 2차원으로 만들어주고, 이 행렬과 곱할 수 있도록 필터 W의 형상을 바꿔줌
+
+행렬 곱 후 편향을 더한 결과를 다시 4차원으로 만들어주고, 축의 순서를 원래대로 변경함
+
+<br>
+
+![transpose](/assets/images/2021_08_16/7_4_3.PNG)
+
+<br>
+
+합성곱 계층의 역전파를 계산할 때에는 im2col을 역으로 처리해야함 (col2im)
+
+<br>
+
+>> ## 7.4.4 풀링 계층 구현하기
+---
+
