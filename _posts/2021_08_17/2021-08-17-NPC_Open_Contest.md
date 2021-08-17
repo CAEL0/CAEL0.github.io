@@ -1,43 +1,43 @@
 ---
-title: "Áß¾Ó´ëÇÐ±³ NPC Open Contest"
+title: "ì¤‘ì•™ëŒ€í•™êµ NPC Open Contest"
 excerpt: "2021.08.16 22:30 ~ 23:59"
 categories: [Problem Solving]
 tags: [BOJ, Contest]
 last_modified_at: 2021-08-17 14:43:00 +0900
 ---
 
-°£¸¸¿¡ ¾à°£ÀÇ ¿©À¯µµ »ý±â°í, contest ÀÚÃ¼µµ 90ºÐÂ¥¸®ÀÌ±âµµ ÇØ¼­ Âü¿©ÇØº¸¾Ò´Ù.
+ê°„ë§Œì— ì•½ê°„ì˜ ì—¬ìœ ë„ ìƒê¸°ê³ , contest ìžì²´ë„ 90ë¶„ì§œë¦¬ì´ê¸°ë„ í•´ì„œ ì°¸ì—¬í•´ë³´ì•˜ë‹¤.
 
 <br>
 
-![½ºÄÚ¾îº¸µå](/assets/images/2021_08_17/scoreboard.PNG)
+![ìŠ¤ì½”ì–´ë³´ë“œ](/assets/images/2021_08_17/scoreboard.PNG)
 
-°á°ú´Â »ìÂ¦ ¾Æ½¬¿î 6µî
+ê²°ê³¼ëŠ” ì‚´ì§ ì•„ì‰¬ìš´ 6ë“±
 
-»ç½Ç À§¿¡ ºÐµéÀ» ÀÌ±æ ¼ö ÀÖÀ» °Å¶ó »ý°¢ÇÏÁø ¾Ê±â ¶§¹®¿¡ º°·Î ¾Æ½±Áø ¾Ê´Ù.
+ì‚¬ì‹¤ ìœ„ì— ë¶„ë“¤ì„ ì´ê¸¸ ìˆ˜ ìžˆì„ ê±°ë¼ ìƒê°í•˜ì§„ ì•Šê¸° ë•Œë¬¸ì— ë³„ë¡œ ì•„ì‰½ì§„ ì•Šë‹¤.
 
-¸Ç³¯ 3~4½Ã°£Â¥¸® contest¸¸ Âü¿©ÇÏ´Ù°¡ 90ºÐ ¸¸¿¡ ´Ù Ç®·Á´Ï Àº±ÙÈ÷ ºý¼Ã´Ù.
-
-<br>
-
-![Åë°è](/assets/images/2021_08_17/statistics.PNG)
-
-![¸Â¾Ò½À´Ï´Ù](/assets/images/2021_08_17/correct.PNG)
-
-A¹øÀ» Ç®°í ¹Ù·Î E¹øÀ¸·Î ³Ñ¾î°¡¼­ E, F¸¦ Á¦ÀÏ ¸ÕÀú Ç®¾ú´Ù ¤¾¤¾
+ë§¨ë‚  3~4ì‹œê°„ì§œë¦¬ contestë§Œ ì°¸ì—¬í•˜ë‹¤ê°€ 90ë¶„ ë§Œì— ë‹¤ í’€ë ¤ë‹ˆ ì€ê·¼ížˆ ë¹¡ì…Œë‹¤.
 
 <br>
 
-> # A. [<u>ÀÌÁø µþ±â</u>](https://www.acmicpc.net/problem/22935)
+![í†µê³„](/assets/images/2021_08_17/statistics.PNG)
+
+![ë§žì•˜ìŠµë‹ˆë‹¤](/assets/images/2021_08_17/correct.PNG)
+
+Aë²ˆì„ í’€ê³  ë°”ë¡œ Eë²ˆìœ¼ë¡œ ë„˜ì–´ê°€ì„œ E, Fë¥¼ ì œì¼ ë¨¼ì € í’€ì—ˆë‹¤ ã…Žã…Ž
+
+<br>
+
+> # A. [<u>ì´ì§„ ë”¸ê¸°</u>](https://www.acmicpc.net/problem/22935)
 ---
 
-Æ¼¾î : Silver V
+í‹°ì–´ : Silver V
 
-¼ú°ÔÀÓ ÀÌÁøµþ±â¸¦ ¾Ë°í ÀÖ¾ú±â ¶§¹®¿¡ ¹Ù·Î ¹®Á¦¸¦ Ç® ¼ö ÀÖ¾ú´Ù.
+ìˆ ê²Œìž„ ì´ì§„ë”¸ê¸°ë¥¼ ì•Œê³  ìžˆì—ˆê¸° ë•Œë¬¸ì— ë°”ë¡œ ë¬¸ì œë¥¼ í’€ ìˆ˜ ìžˆì—ˆë‹¤.
 
-1, 2, ..., 14, 15, 14, ..., 2°¡ ÇÑ »çÀÌÅ¬À» ÀÌ·ç¹Ç·Î mod 28¿¡ ´ëÇØ °á°ú¸¦ ¸ÅÇÎÇØÁÖ¸é µÈ´Ù.
+1, 2, ..., 14, 15, 14, ..., 2ê°€ í•œ ì‚¬ì´í´ì„ ì´ë£¨ë¯€ë¡œ mod 28ì— ëŒ€í•´ ê²°ê³¼ë¥¼ ë§¤í•‘í•´ì£¼ë©´ ëœë‹¤.
 
-°á°ú µµÃâ¿¡´Â bin(), zfill(), replace()¸¦ ÀÌ¿ëÇß´Ù.
+ê²°ê³¼ ë„ì¶œì—ëŠ” bin(), zfill(), replace()ë¥¼ ì´ìš©í–ˆë‹¤.
 
 ```python
 import sys
@@ -48,31 +48,31 @@ for _ in range(int(sys.stdin.readline())):
         n += 1
     else:
         n = 29 - n
-    print(bin(n)[2:].zfill(4).replace('0', 'V').replace('1', 'µþ±â'))
+    print(bin(n)[2:].zfill(4).replace('0', 'V').replace('1', 'ë”¸ê¸°'))
 ```
 
 <br>
 
-> # B. [<u>ÁÖ°£ ´Þ·Â</u>](https://www.acmicpc.net/problem/22936)
+> # B. [<u>ì£¼ê°„ ë‹¬ë ¥</u>](https://www.acmicpc.net/problem/22936)
 ---
 
-Æ¼¾î : Gold IV
+í‹°ì–´ : Gold IV
 
-A¸¦ Ç®°í B·Î ³Ñ¾î¿Ô´Âµ¥ ¹®Á¦°¡ Áï°¢ ÀÌÇØµÇÁö ¾Ê¾Æ E¹øÀ¸·Î ³Ñ¾î°¬¾ú´Ù.
+Aë¥¼ í’€ê³  Bë¡œ ë„˜ì–´ì™”ëŠ”ë° ë¬¸ì œê°€ ì¦‰ê° ì´í•´ë˜ì§€ ì•Šì•„ Eë²ˆìœ¼ë¡œ ë„˜ì–´ê°”ì—ˆë‹¤.
 
-°á±¹ Ç®Áö ¸øÇß´Âµ¥, Â÷±ÙÂ÷±Ù ÀÐ¾îº¸´Ï ºê·çÆ®Æ÷½º·Î Ç® ¼ö ÀÖ¾ú´Ù.
+ê²°êµ­ í’€ì§€ ëª»í–ˆëŠ”ë°, ì°¨ê·¼ì°¨ê·¼ ì½ì–´ë³´ë‹ˆ ë¸Œë£¨íŠ¸í¬ìŠ¤ë¡œ í’€ ìˆ˜ ìžˆì—ˆë‹¤.
 
->> ½ÃÀÛ ³¯Â¥¸¦ Á¤ÇÏ¸é N°³ÀÇ ÁÖ·ÂÀ» ÀÌ¾îºÙÀÎ´Ù.  
->> M°³ÀÇ ÀÏÁ¤ Áß¿¡ ¸¸µé¾î ³õÀº ÁÖ·Â°ú ±â°£ÀÌ °ãÄ¡´Â °Ô ÀÖÀ¸¸é Å×ÀÌÇÁ¸¦ Àß¶ó ºÙÀÎ´Ù.  
->> ÁÖ·Â¿¡ ºÙ¾î ÀÖ´Â Å×ÀÌÇÁ ¸éÀûÀÌ Á¦ÀÏ Å¬ ¶§, Å×ÀÌÇÁ¸¦ ÀÚ¸£´Â È½¼ö´Â?
+>> ì‹œìž‘ ë‚ ì§œë¥¼ ì •í•˜ë©´ Nê°œì˜ ì£¼ë ¥ì„ ì´ì–´ë¶™ì¸ë‹¤.  
+>> Mê°œì˜ ì¼ì • ì¤‘ì— ë§Œë“¤ì–´ ë†“ì€ ì£¼ë ¥ê³¼ ê¸°ê°„ì´ ê²¹ì¹˜ëŠ” ê²Œ ìžˆìœ¼ë©´ í…Œì´í”„ë¥¼ ìž˜ë¼ ë¶™ì¸ë‹¤.  
+>> ì£¼ë ¥ì— ë¶™ì–´ ìžˆëŠ” í…Œì´í”„ ë©´ì ì´ ì œì¼ í´ ë•Œ, í…Œì´í”„ë¥¼ ìžë¥´ëŠ” íšŸìˆ˜ëŠ”?
 
-¹üÀ§°¡ ´Ù ÀÛ¾Æ¼­ ¸ðµç °æ¿ì¸¦ °è»êÇØº¸¸é µÈ´Ù.
+ë²”ìœ„ê°€ ë‹¤ ìž‘ì•„ì„œ ëª¨ë“  ê²½ìš°ë¥¼ ê³„ì‚°í•´ë³´ë©´ ëœë‹¤.
 
-Ã³À½¿¡´Â max_area°¡ °»½ÅµÉ ¶§¸¶´Ù Å×ÀÌÇÁ¸¦ ²÷Àº È½¼ö¸¦ °è»êÇß´õ´Ï TLE°¡ ¶¹´Ù.
+ì²˜ìŒì—ëŠ” max_areaê°€ ê°±ì‹ ë  ë•Œë§ˆë‹¤ í…Œì´í”„ë¥¼ ëŠì€ íšŸìˆ˜ë¥¼ ê³„ì‚°í–ˆë”ë‹ˆ TLEê°€ ë–´ë‹¤.
 
-±×µµ ±×·² °ÍÀÌ ±×·¸°Ô ±¸ÇöÇÏ¸é ½Ã°£ º¹Àâµµ°¡ ´ë·« O(50000NM)ÀÌ ³ª¿Â´Ù.
+ê·¸ë„ ê·¸ëŸ´ ê²ƒì´ ê·¸ë ‡ê²Œ êµ¬í˜„í•˜ë©´ ì‹œê°„ ë³µìž¡ë„ê°€ ëŒ€ëžµ O(50000NM)ì´ ë‚˜ì˜¨ë‹¤.
 
-±×·¡¼­ Ã¹ ¹øÂ° for¹®À» ÀüºÎ µ¹¸®°í Å×ÀÌÇÁ¸¦ ²÷Àº È½¼ö¸¦ ÇÑ ¹ø¸¸ °è»êÇØ Áá´Ù.
+ê·¸ëž˜ì„œ ì²« ë²ˆì§¸ forë¬¸ì„ ì „ë¶€ ëŒë¦¬ê³  í…Œì´í”„ë¥¼ ëŠì€ íšŸìˆ˜ë¥¼ í•œ ë²ˆë§Œ ê³„ì‚°í•´ ì¤¬ë‹¤.
 
 ```python
 import sys
@@ -118,20 +118,20 @@ print(max_count)
 
 <br>
 
-> # C. [<u>±³¼ö´Ô °è»ê±â°¡ °íÀå³µ¾î¿ä!</u>](https://www.acmicpc.net/problem/22937)
+> # C. [<u>êµìˆ˜ë‹˜ ê³„ì‚°ê¸°ê°€ ê³ ìž¥ë‚¬ì–´ìš”!</u>](https://www.acmicpc.net/problem/22937)
 ---
 
-Æ¼¾î : Silver II
+í‹°ì–´ : Silver II
 
-contest µµÁß¿¡´Â ¾ø¾ú´Âµ¥ ³¡³ª°í ³ª´Ï ¾ð¾î Á¦ÇÑÀÌ »ý°å´Ù.
+contest ë„ì¤‘ì—ëŠ” ì—†ì—ˆëŠ”ë° ëë‚˜ê³  ë‚˜ë‹ˆ ì–¸ì–´ ì œí•œì´ ìƒê²¼ë‹¤.
 
-»ç½Ç ÆÄÀÌ½ãÀ¸·Î Ç¬ Ç®ÀÌ°¡ ¿Ö Æ²¸°Áö ¸ð¸£°Ú¾î¼­ ÆÄÀÌ½ã¿¡ ´ëÇÑ ºÒ½Å¸¸ ´Ã¾î°¬´Ù.
+ì‚¬ì‹¤ íŒŒì´ì¬ìœ¼ë¡œ í‘¼ í’€ì´ê°€ ì™œ í‹€ë¦°ì§€ ëª¨ë¥´ê² ì–´ì„œ íŒŒì´ì¬ì— ëŒ€í•œ ë¶ˆì‹ ë§Œ ëŠ˜ì–´ê°”ë‹¤.
 
-ÆÄÀÌ½ãÀ¸·Î Ç® ¶§ ¾ÆÀÌµð¾î´Â ~~Á¶±Ý ¾ç¾ÆÄ¡ °°Áö¸¸~~ float·Î ÀÐ¾î¿Â ÈÄ 10 ** 9¸¦ °öÇØ Á¤¼ö ¹üÀ§¿¡¼­ °ö¼ÀÀ» ÇØÁÖ°í, Àû´çÈ÷ ´Ù½Ã ¼Ò¼ö·Î ¸¸µå´Â °ÍÀÌ¾ú´Ù.
+íŒŒì´ì¬ìœ¼ë¡œ í’€ ë•Œ ì•„ì´ë””ì–´ëŠ” ~~ì¡°ê¸ˆ ì–‘ì•„ì¹˜ ê°™ì§€ë§Œ~~ floatë¡œ ì½ì–´ì˜¨ í›„ 10 ** 9ë¥¼ ê³±í•´ ì •ìˆ˜ ë²”ìœ„ì—ì„œ ê³±ì…ˆì„ í•´ì£¼ê³ , ì ë‹¹ížˆ ë‹¤ì‹œ ì†Œìˆ˜ë¡œ ë§Œë“œëŠ” ê²ƒì´ì—ˆë‹¤.
 
-Decimal ¶óÀÌºê·¯¸®¸¦ ¶°¿Ã·ÈÀ¸¸é ¾ÆÁÖ ½±°Ô Ç® ¼ö ÀÖ¾úÀ» ÅÙµ¥ ¾Æ½±´Ù.
+Decimal ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ë– ì˜¬ë ¸ìœ¼ë©´ ì•„ì£¼ ì‰½ê²Œ í’€ ìˆ˜ ìžˆì—ˆì„ í…ë° ì•„ì‰½ë‹¤.
 
-C++·Î´Â Å« ¼ö °ö¼ÀÀ» ±¸ÇöÇØ¼­ Ç®¾ú´Ù.
+C++ë¡œëŠ” í° ìˆ˜ ê³±ì…ˆì„ êµ¬í˜„í•´ì„œ í’€ì—ˆë‹¤.
 
 ```cpp
 #include <iostream>
@@ -211,16 +211,16 @@ int main() {
 
 <br>
 
-> # D. [<u>¹é¹ß¹éÁØÇÏ´Â ¸í»ç¼ö</u>](https://www.acmicpc.net/problem/22938)
+> # D. [<u>ë°±ë°œë°±ì¤€í•˜ëŠ” ëª…ì‚¬ìˆ˜</u>](https://www.acmicpc.net/problem/22938)
 ---
 
-Æ¼¾î : Bronze II
+í‹°ì–´ : Bronze II
 
-¹é¹ß¹éÁßÀÌÀÌ ¾Æ´Ï¶ó ¹é¹ß¹é**ÁØ**ÀÎ°Å Áö±Ý ºÃ´Ù...
+ë°±ë°œë°±ì¤‘ì´ì´ ì•„ë‹ˆë¼ ë°±ë°œë°±**ì¤€**ì¸ê±° ì§€ê¸ˆ ë´¤ë‹¤...
 
-¹®Á¦¸¦ ½» ½ºÄµÇÏ´Ï µÎ ¿øÀÌ °ãÄ¡³Ä ¾È °ãÄ¡³Ä ¹¯´Â ¹®Á¦¿´´Ù.
+ë¬¸ì œë¥¼ ìŠ¥ ìŠ¤ìº”í•˜ë‹ˆ ë‘ ì›ì´ ê²¹ì¹˜ëƒ ì•ˆ ê²¹ì¹˜ëƒ ë¬»ëŠ” ë¬¸ì œì˜€ë‹¤.
 
-¿ìº¯¿¡ Á¦°ö ¾È ¾º¿ü´Ù°¡ ÇÑ ¹ø Æ²·È´Ù...
+ìš°ë³€ì— ì œê³± ì•ˆ ì”Œì› ë‹¤ê°€ í•œ ë²ˆ í‹€ë ¸ë‹¤...
 
 ```python
 import sys
@@ -233,18 +233,18 @@ print(['NO', 'YES'][(a - d) ** 2 + (b - e) ** 2 < (c + f) ** 2])
 
 <br>
 
-> # E. [<u>ÄíÅ°Å©·ç</u>](https://www.acmicpc.net/problem/22939)
+> # E. [<u>ì¿ í‚¤í¬ë£¨</u>](https://www.acmicpc.net/problem/22939)
 ---
 
-Æ¼¾î : Gold V
+í‹°ì–´ : Gold V
 
-A¹øÀ» Ç®°í B¹øÀ» °Ç³Ê ¶Ú µÚ ¹«¾ùÀ» Ç®±î °í¹ÎÇÏ´Ù°¡ ¹®Á¦ Á¦¸ñÀÌ ¸¶À½¿¡ µé¾î¼­ °ñ¶ú´Ù.
+Aë²ˆì„ í’€ê³  Bë²ˆì„ ê±´ë„ˆ ë›´ ë’¤ ë¬´ì—‡ì„ í’€ê¹Œ ê³ ë¯¼í•˜ë‹¤ê°€ ë¬¸ì œ ì œëª©ì´ ë§ˆìŒì— ë“¤ì–´ì„œ ê³¨ëžë‹¤.
 
-¹®Á¦°¡ »ìÂ¦ ±æÁö¸¸ ¿ä¾àÇÏÀÚ¸é, H¿¡¼­ Ãâ¹ßÇØ #¿¡ µµÂøÇÒ ¶§ W, C, B, J Áß¿¡¼­ Àû¾îµµ ÇÑ Á¾·ù¸¦ ¸ðµÎ (3±ºµ¥) ¹æ¹®ÇØ¾ß ÇÑ´Ù.
+ë¬¸ì œê°€ ì‚´ì§ ê¸¸ì§€ë§Œ ìš”ì•½í•˜ìžë©´, Hì—ì„œ ì¶œë°œí•´ #ì— ë„ì°©í•  ë•Œ W, C, B, J ì¤‘ì—ì„œ ì ì–´ë„ í•œ ì¢…ë¥˜ë¥¼ ëª¨ë‘ (3êµ°ë°) ë°©ë¬¸í•´ì•¼ í•œë‹¤.
 
-°æ¿ìÀÇ ¼ö°¡ 4 x 3!¿¡ Nµµ 100 ÀÌÇÏ¶ó ºê·çÆ®Æ÷½º·Î Ç®¾ú´Ù.
+ê²½ìš°ì˜ ìˆ˜ê°€ 4 x 3!ì— Në„ 100 ì´í•˜ë¼ ë¸Œë£¨íŠ¸í¬ìŠ¤ë¡œ í’€ì—ˆë‹¤.
 
-itertools.permutations()¸¦ ÀÌ¿ëÇÒ ¼öµµ ÀÖ¾úÁö¸¸, ±×³É º¹ºÙÇØ¼­ ´Ù ¾²´Â °Ô ´õ ºü¸¦ °Í °°¾Ò´Ù.
+itertools.permutations()ë¥¼ ì´ìš©í•  ìˆ˜ë„ ìžˆì—ˆì§€ë§Œ, ê·¸ëƒ¥ ë³µë¶™í•´ì„œ ë‹¤ ì“°ëŠ” ê²Œ ë” ë¹ ë¥¼ ê²ƒ ê°™ì•˜ë‹¤.
 
 ```python
 import sys
@@ -296,20 +296,20 @@ print(ans)
 
 <br>
 
-> # F. [<u>¼±Çü ¿¬¸³ ¹æÁ¤½Ä</u>](https://www.acmicpc.net/problem/22940)
+> # F. [<u>ì„ í˜• ì—°ë¦½ ë°©ì •ì‹</u>](https://www.acmicpc.net/problem/22940)
 ---
 
-Æ¼¾î : Gold II
+í‹°ì–´ : Gold II
 
-ºê·çÆ®Æ÷½º¸¦ ÇÏ±â¿£ 10 ** 12°¡Áö °æ¿ì¶ó¼­ TLE°¡ ¶ã °ÍÀÌ´Ù.
+ë¸Œë£¨íŠ¸í¬ìŠ¤ë¥¼ í•˜ê¸°ì—” 10 ** 12ê°€ì§€ ê²½ìš°ë¼ì„œ TLEê°€ ëœ° ê²ƒì´ë‹¤.
 
-±×·³ ¹¹ º° ¼ö ÀÖ°Ú´Â°¡, Gaussian EliminationÀ» »ç¿ëÇØ¾ß ÇÑ´Ù.
+ê·¸ëŸ¼ ë­ ë³„ ìˆ˜ ìžˆê² ëŠ”ê°€, Gaussian Eliminationì„ ì‚¬ìš©í•´ì•¼ í•œë‹¤.
 
-Ã³À½¿¡ pypy3·Î Á¦ÃâÇß´Ù°¡ RE°¡ ¶°¼­ ¹¹Áö ½Í¾ú´Âµ¥, ¿¹Àü¿¡ pypy3¸¦ »ç¿ëÇÒ ¶§ math.lcm ¶§¹®¿¡ ModuleNotFoundError°¡ ¶¹´ø ±â¾ïÀÌ ¶°¿Ã¶ó pythonÀ¸·Î Á¦ÃâÇß°í, Åë°úµÆ´Ù.
+ì²˜ìŒì— pypy3ë¡œ ì œì¶œí–ˆë‹¤ê°€ REê°€ ë– ì„œ ë­ì§€ ì‹¶ì—ˆëŠ”ë°, ì˜ˆì „ì— pypy3ë¥¼ ì‚¬ìš©í•  ë•Œ math.lcm ë•Œë¬¸ì— ModuleNotFoundErrorê°€ ë–´ë˜ ê¸°ì–µì´ ë– ì˜¬ë¼ pythonìœ¼ë¡œ ì œì¶œí–ˆê³ , í†µê³¼ëë‹¤.
 
-±¸±Û¸µÀ» ÇØº¸´Ï math.lcmÀÌ python 3.9 ¹öÀü¿¡ »õ·Î Ãß°¡µÈ ÇÔ¼ö¶ó°í ÇÑ´Ù.
+êµ¬ê¸€ë§ì„ í•´ë³´ë‹ˆ math.lcmì´ python 3.9 ë²„ì „ì— ìƒˆë¡œ ì¶”ê°€ëœ í•¨ìˆ˜ë¼ê³  í•œë‹¤.
 
-pypy3¿£ ¾ÆÁ÷ Ãß°¡µÇÁö ¾Ê¾Ò³ª º¸´Ù.
+pypy3ì—” ì•„ì§ ì¶”ê°€ë˜ì§€ ì•Šì•˜ë‚˜ ë³´ë‹¤.
 
 ```python
 import sys
@@ -343,14 +343,14 @@ print(*reversed(res))
 
 <br>
 
-> # G. [<u>RPG ¸¶½ºÅÍ ¿À¸íÁø</u>](https://www.acmicpc.net/problem/22941)
+> # G. [<u>RPG ë§ˆìŠ¤í„° ì˜¤ëª…ì§„</u>](https://www.acmicpc.net/problem/22941)
 ---
 
-Æ¼¾î : Silver I
+í‹°ì–´ : Silver I
 
-¼ýÀÚ ¹üÀ§µµ Å©°í ½Ã°£µµ ÂªÀ¸¹Ç·Î O(1) Ç®ÀÌ¸¦ °í¾ÈÇØ¾ß ÇÑ´Ù.
+ìˆ«ìž ë²”ìœ„ë„ í¬ê³  ì‹œê°„ë„ ì§§ìœ¼ë¯€ë¡œ O(1) í’€ì´ë¥¼ ê³ ì•ˆí•´ì•¼ í•œë‹¤.
 
-ÀüÅõ ½ÃÀÛ ÈÄ ¸î ÅÏ±îÁö ¿ë»ç°¡ Á×Áö ¾Ê°í, ¸¶¿Õµµ ½ºÅ³ ¹ßµ¿À» ÇÏÁö ¾ÊÀ»±î¸¦ »ý°¢ÇØ º¸¸é ½±°Ô Ç® ¼ö ÀÖ´Ù.
+ì „íˆ¬ ì‹œìž‘ í›„ ëª‡ í„´ê¹Œì§€ ìš©ì‚¬ê°€ ì£½ì§€ ì•Šê³ , ë§ˆì™•ë„ ìŠ¤í‚¬ ë°œë™ì„ í•˜ì§€ ì•Šì„ê¹Œë¥¼ ìƒê°í•´ ë³´ë©´ ì‰½ê²Œ í’€ ìˆ˜ ìžˆë‹¤.
 
 ```python
 import sys
