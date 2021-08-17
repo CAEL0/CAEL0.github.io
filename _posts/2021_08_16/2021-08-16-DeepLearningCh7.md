@@ -3,7 +3,7 @@ title: "밑바닥부터 시작하는 딥러닝 Chapter 7"
 excerpt: 합성곱 신경망 (CNN)
 categories: [Deep Learning]
 tags: [밑바닥부터 시작하는 딥러닝]
-last_modified_at: 2021-08-16 18:33:00 +0900
+last_modified_at: 2021-08-17 11:20:00 +0900
 ---
 
 > *이 포스트는 책 [<u>밑바닥부터 시작하는 딥러닝</u>](https://books.google.co.kr/books/about/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0_%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94_%EB%94%A5%EB%9F%AC%EB%8B%9D.html?id=SM9KDwAAQBAJ&source=kp_book_description&redir_esc=y)을 정리한 내용입니다.*
@@ -162,9 +162,9 @@ $$ OW = \frac{W + 2P - FW}{S} + 1 $$
 
 <br>
 
-* 입력 데이터의 채널 수와 필터의 채널 수가 같아야함
+* 입력 데이터의 채널 수와 필터의 채널 수가 같아야 함
 
-* 모든 필터의 크기가 같아야함
+* 모든 필터의 크기가 같아야 함
 
 <br>
 
@@ -386,7 +386,7 @@ col2 = im2col(x2, 5, 5, stride=1, pad=0)
 print(col2.shape)  # (90, 75)
 ```
 
-입력 데이터가 여러개일 땐 행을 추가함
+입력 데이터가 여러 개일 땐 행을 추가함
 
 ```python
 class Convolution:
@@ -429,7 +429,7 @@ class Convolution:
 
 <br>
 
-합성곱 계층의 역전파를 계산할 때에는 im2col을 역으로 처리해야함 (col2im)
+합성곱 계층의 역전파를 계산할 때에는 im2col을 역으로 처리해야 함 (col2im)
 
 <br>
 
@@ -507,17 +507,19 @@ class SimpleConvNet:
         filter_stride = conv_param['strid']
         input_size = input_dim[1]
         conv_output_size = (input_size - filter_size + 2 * filter_pad) / filter_stride + 1
-        pool_output_size = int(filter_num * (conv_output_size / 2) * (comv_output_size / 2))
+        pool_output_size = int(filter_num * (conv_output_size / 2) ** 2)
 
+        # 가중치 매개변수 초기화
         self.params = {}
         self.params['W1'] = weight_init_std * np.random.randn(filter_num, input_dim[0],
                                                              filter_size, filter_size)
         self.params['b1'] = np.zeros(filter_num)
         self.params['W2'] = weight_init_std * np.random.randn(pool_output_size, hidden_size)
         self.params['b2'] = np.zeros(hidden_size)
-        self.params['W#'] = weight_init_std * np.random.randn(hidden_size, output_size)
+        self.params['W3'] = weight_init_std * np.random.randn(hidden_size, output_size)
         self.params['b3'] = np.zeros(output_size)
 
+        # 계층 생성
         self.layers = OrderedDict()
         self.layers['Conv1'] = Convolution(self.params['W1'], self.params['b1'],
                                             conv_param['stride'], conv_param['pad'])
@@ -527,4 +529,151 @@ class SimpleConvNet:
         self.layers['Relu2'] = Relu()
         self.layers['Affine2'] = Affine(self.params['W3'], self.params['b3'])
         self.last_layer = SoftmaxWithLoss()
+    
+    def predict(self, x):
+        for layer in self.layers.values():
+            x = layer.forward(x)
+        return x
+    
+    def loss(self, x, t):
+        y = self.predict(x)
+        return self.last_layer.forward(y, t)
+    
+    def gradient(self, x, t):
+        # forward propagation
+        self.loss(x, t)
+
+        # back propagation
+        dout = 1
+        dout = self.last_layer.backward(dout)
+
+        layes = reversed(self.layers.values())
+        for layer in layers:
+            dout = layer.backward(dout)
+        
+        # 기울기 저장
+        grads = {}
+        grads['W1'] = self.layers['Conv1'].dW
+        grads['b1'] = self.layers['Conv1'].db
+        grads['W2'] = self.layers['Affine1'].dW
+        grads['b2'] = self.layers['Affine1'].db
+        grads['W3'] = self.layers['Affine2'].dW
+        grads['b3'] = self.layers['Affine2'].db
+
+        return grads
 ```
+
+이 SimpleConvNet을 MNIST 데이터셋으로 학습하면 훈련 데이터에 대한 정확도는 99.82%, 시험 데이터에 대한 정확도는 98.96%가 나옴
+
+<br>
+
+> # 7.6 CNN 시각화하기
+---
+
+>> ## 7.6.1 1번째 층의 가중치 시각화하기
+---
+
+1번째 층 합성곱 계층의 가중치 형상 : (30, 1, 5, 5)
+
+$ \rightarrow $ 30개의 5 x 5 회색조 이미지로 시각화할 수 있음
+
+<br>
+
+![1층 시각화](/assets/images/2021_08_16/7_6_1_1.PNG)
+
+<br>
+
+무작위 회색조 이미지에서 학습을 거치며 규칙성을 가짐
+
+에지 (색상이 바뀐 경계선)와 블롭 (국소적으로 덩어리진 영역) 등에 영향을 받음
+
+<br>
+
+![에지에 반응하는 필터](/assets/images/2021_08_16/7_6_1_2.PNG)
+
+<br>
+
+필터 1은 세로 에지에 반응해, 세로 방향으로 색상 경계가 생긴 모자 끝부분과 어깨 부분에 더욱 민감하게 반응함
+
+|||||
+|:-:|:-:|:-:|:-:|
+|10|10|10|10|
+|10| 1| 1| 1|
+|10| 1| 1| 1|
+|10| 1| 1| 1|
+
+|||
+|:-:|:-:|
+|10|10|
+| 1| 1|
+
+예로 들어, 위와 같은 4 x 4 입력 데이터와 2 x 2 필터의 합성곱을 계산해보면 (stride = 1)
+
+||||
+|:-:|:-:|:-:|
+|211|202|202|
+|121| 22| 22|
+|121| 22| 22|
+
+가로 에지에 반응하는 필터였기 때문에 가로 방향의 경향성에 더욱 민감한 것을 알 수 있음
+
+<br>
+
+>> ## 7.6.2 층 깊이에 따른 추출 정보 변화
+---
+
+계층이 깊어질수록 추출되는 정보 (강하게 반응하는 뉴런)는 더욱 추상화됨
+
+<br>
+
+![8층 CNN](/assets/images/2021_08_16/7_6_2.PNG)
+
+<br>
+
+일반 사물 인식 CNN (AlexNet)
+
+층이 깊어지면서 뉴런이 반응하는 대상이 단순한 모양에서 고급 정보로 변화함
+
+<br>
+
+> # 7.7 대표적인 CNN
+---
+
+>> ## 7.7.1 leNet
+---
+
+1998년 제안된 손글씨 숫자 인식 네트워크
+
+<br>
+
+![LeNet](/assets/images/2021_08_16/7_7_1.PNG)
+
+<br>
+
+* LeNet은 시그모이드 함수를 사용 / 현재 CNN은 주로 ReLU를 사용
+
+* LeNet은 서브샘플링을 하여 중간 데이터의 크기를 줄임 / 현재 CNN은 최대 풀링이 주류
+
+<br>
+
+>> ## 7.7.2 AlexNet
+---
+
+2012년 발표된 모델로 LRN이라는 국소적 정규화를 실시하는 계층을 이용하고 드롭아웃을 사용함
+
+네트워크 구성 면에서는 큰 차이가 없지만, 병렬 계산에 특화된 GPU의 보급과 빅데이터의 접근성 완화가 딥러닝의 발전을 가져옴
+
+<br>
+
+> # 7.8 정리
+---
+
+* CNN은 지금까지의 완전연결 계층 네트워크에 합성곱 계층과 풀링 계층을 새로 추가함
+
+* 합성곱 계층과 풀링 계층은 im2col 함수를 이용하면 간단하고 효율적으로 구현할 수 있음
+
+* CNN을 시각화해보면 계층이 깊어질수록 고급 정보가 추출됨
+
+* 대표적인 CNN에는 LeNet과 AlexNet이 있음
+
+* 딥러닝의 발전에는 빅데이터와 GPU가 크게 기여함
