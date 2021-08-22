@@ -3,7 +3,7 @@ title: "중앙대학교 NPC Open Contest"
 excerpt: "2021.08.16 22:30 ~ 23:59"
 categories: [Problem Solving]
 tags: [BOJ, Contest]
-last_modified_at: 2021-08-17 14:43:00 +0900
+last_modified_at: 2021-08-22 16:42:00 +0900
 ---
 
 간만에 약간의 여유도 생기고, contest 자체도 90분짜리이기도 해서 참여해보았다.
@@ -214,7 +214,7 @@ int main() {
 > # D. [<u>백발백준하는 명사수</u>](https://www.acmicpc.net/problem/22938)
 ---
 
-티어 : Bronze II
+티어 : Bronze III
 
 백발백중이 아니라 백발백**준**인거 지금 봤다...
 
@@ -299,7 +299,7 @@ print(ans)
 > # F. [<u>선형 연립 방정식</u>](https://www.acmicpc.net/problem/22940)
 ---
 
-티어 : Gold II
+티어 : Gold I
 
 브루트포스를 하기엔 10 ** 12가지 경우라서 TLE가 뜰 것이다.
 
@@ -346,7 +346,7 @@ print(*reversed(res))
 > # G. [<u>RPG 마스터 오명진</u>](https://www.acmicpc.net/problem/22941)
 ---
 
-티어 : Silver I
+티어 : Silver II
 
 숫자 범위도 크고 시간도 짧으므로 O(1) 풀이를 고안해야 한다.
 
