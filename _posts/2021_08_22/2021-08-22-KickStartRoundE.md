@@ -127,13 +127,66 @@ for t in range(int(sys.stdin.readline())):
 
 K가 1로 제한돼 있어 쉽게 풀 수 있었다.
 
+테스트셋2의 해설을 보니, 정말 내가 싫어하는 스타일의 문제다.
 
-~ 작성 예정 ~
+다양한 코너 케이스가 존재하고 엄밀히 증명하기엔 또 까다로운, 정답률이 제일 낮을만한 문제였다.
 
+심지어 테스트 데이터를 다운 받아 디버깅을 했다.
 
+고로 통과 코드만 첨부하고 별다른 코멘트를 남기지 않겠다.
 
+<br>
 
+```python
+import sys
+from math import ceil
 
+for t in range(int(sys.stdin.readline())):
+    r, c, k = map(int, sys.stdin.readline().split())
+    r1, c1, r2, c2 = map(int, sys.stdin.readline().split())
+
+    n = ceil((r2 - r1 + 1) / k)
+    m = ceil((c2 - c1 + 1) / k)
+
+    ans1 = n + m - m * ((r1 == 1) + (r2 == r))
+    ans2 = ans1
+
+    if (c1 != 1) and (c2 != c):
+        ans1 += ceil((r - r1 + 1) / k) + m
+    elif (c1 == 1) and (c2 == c):
+        ans1 += m - n
+    else:
+        ans1 += m
+
+    if (c1 != 1) and (c2 != c):
+        ans2 += ceil(r2 / k) + m
+    elif (c1 == 1) and (c2 == c):
+        ans2 += m - n
+    else:
+        ans2 += m
+    
+    ans3 = n + m - n * ((c1 == 1) + (c2 == c))
+    ans4 = ans3
+
+    if (r1 != 1) and (r2 != r):
+        ans3 += ceil((c - c1 + 1) / k) + n
+    elif (r1 == 1) and (r2 == r):
+        ans3 += n - m
+    else:
+        ans3 += n
+    
+    if (r1 != 1) and (r2 != r):
+        ans4 += ceil(c2 / k) + n
+    elif (r1 == 1) and (r2 == r):
+        ans4 += n - m
+    else:
+        ans4 += n
+
+    ans = min(ans1, ans2, ans3, ans4)
+    ans += (r2 - r1 + 1) * (c2 - c1 + 1) - 1 + int((r2 - r1) / k) * int((c2 - c1) / k)
+
+    print(f'Case #{t + 1}: {ans}')
+```
 
 <br>
 
