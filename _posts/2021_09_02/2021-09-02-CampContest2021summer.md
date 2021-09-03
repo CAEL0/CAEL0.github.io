@@ -3,14 +3,14 @@ title: "Camp Contest 2021 Summer 후기"
 excerpt: 2021.08.21 14:00 ~ 17:00
 categories: [Problem Solving]
 tags: [Contest, ICPC Sinchon, Camp Contest]
-last_modified_at: 2021-09-02 20:42:00 +0900
+last_modified_at: 2021-09-03 12:14:00 +0900
 ---
 
 <br>
 
->> [문제 링크](https://www.acmicpc.net/category/detail/2749)
+>> [<u>문제 링크</u>](https://www.acmicpc.net/category/detail/2749)
 
->> [해설 링크](https://icpc-sinchon.io/campcontest)
+>> [<u>해설 링크</u>](https://icpc-sinchon.io/campcontest)
 
 <br>
 
@@ -169,7 +169,7 @@ flow도 2-sat과 비슷하게 느껴졌다.
 
 DP 1은 첫 주 차라 괜찮았는데 DP 2는 연습문제 풀다가 울 뻔했다.
 
-[사수아탕](https://www.acmicpc.net/problem/2419)은 아직도 기억에 남는다.
+[<u>사수아탕</u>](https://www.acmicpc.net/problem/2419)은 아직도 기억에 남는다.
 
 DP가 문제 스타일이 정형화돼있지 않아서 더 어렵게 느껴진 듯하다.
 
